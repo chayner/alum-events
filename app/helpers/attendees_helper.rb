@@ -1,4 +1,4 @@
-module GraduatesHelper
+module AttendeesHelper
 
   def college(abbriviation)
     colleges = {

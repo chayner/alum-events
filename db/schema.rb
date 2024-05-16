@@ -10,9 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_27_203722) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_16_015014) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attendees", force: :cascade do |t|
+    t.string "buid"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "phone_number"
+    t.integer "ug_graduation_year"
+    t.string "ug_college"
+    t.string "ug_program"
+    t.string "ug_degree"
+    t.integer "gr_graduation_year"
+    t.string "gr_college"
+    t.string "gr_program"
+    t.string "gr_degree"
+    t.string "category"
+    t.string "company"
+    t.string "position"
+    t.datetime "checked_in", precision: nil
+    t.datetime "printed", precision: nil
+  end
 
   create_table "brags", force: :cascade do |t|
     t.string "name"
@@ -20,28 +41,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_27_203722) do
     t.text "message"
   end
 
-  create_table "graduates", primary_key: "buid", id: { type: :string, limit: 50 }, force: :cascade do |t|
-    t.string "lastname", limit: 50
-    t.string "suffix", limit: 50
-    t.string "firstname", limit: 50
-    t.string "middlename", limit: 50
-    t.string "preferredlast", limit: 50
-    t.string "preferredfirst", limit: 50
-    t.string "honors", limit: 50
-    t.string "levelcode", limit: 50
-    t.string "college1", limit: 50
-    t.string "collegedesc", limit: 50
-    t.string "degree1", limit: 50
-    t.string "hoodcolor", limit: 50
-    t.string "campusemail", limit: 50
-    t.string "fullname", limit: 50
-    t.string "buid2", limit: 50
-    t.string "orderid", limit: 50
-    t.integer "height"
-    t.datetime "checked_in", precision: nil
-    t.datetime "printed", precision: nil
-    t.string "degstatus", limit: 50
-    t.string "degstatusdesc", limit: 50
+  create_table "events", force: :cascade do |t|
+    t.string "name"
+    t.datetime "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

@@ -1,9 +1,9 @@
 class CreateTable < ActiveRecord::Migration[7.0]
   def change
     create_table "graduates", primary_key: "buid", id: { type: :string, limit: 50 }, force: :cascade do |t|
-      t.string "lastname", limit: 50
+      t.string "last_name", limit: 50
       t.string "suffix", limit: 50
-      t.string "firstname", limit: 50
+      t.string "first_name", limit: 50
       t.string "middlename", limit: 50
       t.string "preferredlast", limit: 50
       t.string "preferredfirst", limit: 50

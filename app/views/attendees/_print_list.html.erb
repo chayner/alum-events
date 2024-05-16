@@ -1,0 +1,45 @@
+<table class="primary">
+  <thead>
+    <tr>
+      <th>BUID</th>
+      <th>Name</th>
+      <th>Cat</th>
+      <th>Degree</th>
+     <th><span class="material-symbols-outlined">verified</span></th>
+      <th><span class="material-symbols-outlined">Print</span></th>
+    <tr>
+  </thead>
+  <% @attendees.each do |attendee| %>
+    <tr>
+      <td><%= link_to(attendee.buid, attendee_path(buid: attendee.buid, last_name: params.fetch(:last_name, nil))) %></td>
+      <td><%= attendee.last_name %>, <%= attendee.first_name %> </td>
+      <td>
+        <% if attendee.category == "Alumni" %>
+          <span class="material-symbols-outlined">school</span>
+        <% elsif attendee.category == "Staff" %>
+          <span class="material-symbols-outlined">badge</span>
+        <% elsif attendee.category == "Faculty" %>
+          <span class="material-symbols-outlined">history_edu</span>
+        <% elsif attendee.category == "Guest" %>
+          <span class="material-symbols-outlined">group</span>
+        <% end %>
+      </td>
+      <td>
+        <%= attendee.ug_program %>
+        <% if attendee.gr_degree != "" %>
+          <span class="material-symbols-outlined">school</span> <%= attendee.gr_program %>
+        <% end %>
+      </td>
+      <td>
+        <% if attendee.checked_in? %>
+          <span class="material-symbols-outlined">done</span>
+        <% end %>
+      </td>
+      <td>
+        <% if attendee.printed? %>
+          <span class="material-symbols-outlined">done</span>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
