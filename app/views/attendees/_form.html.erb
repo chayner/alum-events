@@ -1,0 +1,92 @@
+<%= form_with(model: attendee, local: true) do |form| %>
+  <% if attendee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(attendee.errors.count, "error") %> prohibited this attendee from being saved:</h2>
+
+      <ul>
+        <% attendee.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.email_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone_number %>
+    <%= form.telephone_field :phone_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ug_graduation_year %>
+    <%= form.number_field :ug_graduation_year %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ug_college %>
+    <%= form.text_field :ug_college %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ug_program %>
+    <%= form.text_field :ug_program %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ug_degree %>
+    <%= form.text_field :ug_degree %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gr_graduation_year %>
+    <%= form.number_field :gr_graduation_year %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gr_college %>
+    <%= form.text_field :gr_college %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gr_program %>
+    <%= form.text_field :gr_program %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gr_degree %>
+    <%= form.text_field :gr_degree %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category %>
+    <%= form.text_field :category %>
+  </div>
+
+  <div class="field">
+    <%= form.label :company %>
+    <%= form.text_field :company %>
+  </div>
+
+  <div class="field">
+    <%= form.label :position %>
+    <%= form.text_field :position %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
