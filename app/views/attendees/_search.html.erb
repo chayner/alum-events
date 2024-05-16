@@ -13,7 +13,8 @@
       <%= form.submit "Search" %>
     </div>
     <div id="new-attendee-box" class="fourth">
-      <%= link_to "New Attendee", new_attendee_path, class: "button secondary" %>
+      <!-- Add a button to trigger the modal -->
+      <label id="height-modal" for="add_attendee_modal" class="button secondary">Add New Attendee</label>
     </div>
     <footer class="full">
       <label id="inc-checkbox">
@@ -23,4 +24,36 @@
     </footer>
 
 <% end %>
+</div>
+
+
+<!-- Modal -->
+<div id="add-attendee-modal" class="modal">
+  <input id="add_attendee_modal" type="checkbox" />
+  <label for="add_attendee_modal" class="overlay"></label>
+  <article class="modal-content">  
+    <span class="close">&times;</span>
+    <h2>Add New Attendee</h2>
+    <%= form_with url: quick_create_attendee_path, method: :post, local: true, id: "quick-add-form" do |form| %>
+    <div class="flex">
+      <div class="field half">
+        <%= form.text_field :first_name, placeholder: "First name", name: "attendee[first_name]" %>
+      </div>
+      <div class="field half">
+        <%= form.text_field :last_name, placeholder: "Last name", name: "attendee[last_name]" %>
+      </div>
+      <div class="field half">
+        <%= form.number_field :ug_graduation_year, min: 1950, max: Date.today.year + 5, placeholder: "Enter graduation year", name: "attendee[ug_graduation_year]" %>
+      </div>
+      <div class="field full">
+        <%= form.text_field :email, placeholder: "Email", name: "attendee[email]" %>
+      </div>
+      <div class="action-bar full">
+        <%= form.submit "Add Attendee", class: "button" %>
+        <p><%= link_to "More Options", new_attendee_path, id: "more-options-link", class: "" %></p>
+      </div>
+    </div>
+    <% end %>
+    
+  </article>
 </div>

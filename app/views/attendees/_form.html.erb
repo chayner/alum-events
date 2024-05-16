@@ -13,7 +13,7 @@
 
   <div id="attendee-form">
     <h3>Contact Info</h3>
-    <div class="flex">
+    <fieldset class="flex">
       <div class="field half">
         <%= form.text_field :first_name, placeholder: "First Name" %>
       </div>
@@ -30,23 +30,22 @@
         <%= form.telephone_field :phone_number, placeholder: "Phone" %>
       </div>
 
-    </div>
+      <div class="field full half-800">
+        <%= form.text_field :buid, placeholder: "BUID" %>
+      </div>
+
+    </fieldset>
     
     <h3>Undergraduate</h3>
     
-    <div class="flex">
-      <div class="field half">
+    <fieldset class="flex">
+      <div class="field fourth">
         <%= form.label :ug_graduation_year, "Grad Year" %>
         <%= form.number_field :ug_graduation_year, min: 1950, max: Date.today.year + 5 %>
       </div>
-      <div class="field half">
-        <%= form.label :ug_degree, "Degree" %>
-        <%= form.text_field :ug_degree %>
-      </div>
       
-
-      <div class="field">
-        <%= form.label :ug_college, "College" %>
+      <div class="field three-fourth">
+        <%= form.label :gr_college, "College" %>
         <%= form.select :ug_college, options_for_select([
           ['Please Select', ''],
           ['College of Business', 'CB'],
@@ -68,27 +67,25 @@
           ['College of Nursing', 'CN']
         ], selected: attendee.ug_college) %>
       </div>
-      <div class="field">
-        <%= form.label :ug_program, "Program" %>
-        <%= form.text_field :ug_program %>
+      <div class="field fourth">
+        <%= form.text_field :ug_degree, placeholder: "Degree" %>
       </div>
-    </div>
+      
+      <div class="field three-fourth">
+        <%= form.text_field :ug_program, placeholder: "Program" %>
+      </div>
+    </fieldset>
     
     
   <h3>Graduate</h3>
     
-    <div class="flex">
-      <div class="field half">
+    <fieldset class="flex">
+      <div class="field fourth">
         <%= form.label :gr_graduation_year, "Grad Year" %>
         <%= form.number_field :gr_graduation_year, min: 1950, max: Date.today.year + 5 %>
       </div>
 
-      <div class="field half">
-        <%= form.label :gr_degree, "Degree" %>
-        <%= form.text_field :gr_degree %>
-      </div>
-
-      <div class="field">
+      <div class="field three-fourth">
         <%= form.label :gr_college, "College" %>
         <%= form.select :gr_college, options_for_select([
           ['Please Select', ''],
@@ -112,46 +109,56 @@
         ], selected: attendee.gr_college) %>
       </div>
 
-      <div class="field">
-        <%= form.label :gr_program, "Program" %>
-        <%= form.text_field :gr_program %>
+      <div class="field fourth">
+        <%= form.text_field :gr_degree, placeholder: "Degree" %>
       </div>
-    </div>
+
+      <div class="field three-fourth">
+        <%= form.text_field :gr_program, placeholder: "Program" %>
+      </div>
+    </fieldset>
 
     <h3>Work</h3>
 
-    <div class="field">
-      <%= form.label :company %>
-      <%= form.text_field :company %>
-    </div>
+    <fieldset class="flex">
+      <div class="field">
+        <%= form.text_field :company, placeholder: "Company" %>
+      </div>
 
-    <div class="field">
-      <%= form.label :position %>
-      <%= form.text_field :position %>
-    </div>
+      <div class="field">
+        <%= form.text_field :position, placeholder: "Position" %>
+      </div>
+      <div class="field half">
+        <label>
+          <%= form.check_box :is_faculty  %>
+          <span class="checkable">
+            <%= form.label :is_faculty, "Belmont Faculty" %>
+          </span>
+        </label>
+      </div>
 
-    <div class="flex">
-    <div class="field half">
-      <label>
-        <%= form.check_box :is_faculty  %>
-        <span class="checkable">
-          <%= form.label :is_faculty, "Belmont Faculty" %>
-        </span>
-      </label>
-    </div>
+      <div class="field half">
+        <label>
+          <%= form.check_box :is_staff  %>
+          <span class="checkable">
+            <%= form.label :is_staff, "Belmont Staff" %>
+          </span>
+        </label>
+      </div>
+    </fieldset>
 
-    <div class="field half">
-      <label>
-        <%= form.check_box :is_staff  %>
-        <span class="checkable">
-          <%= form.label :is_staff, "Belmont Staff" %>
-        </span>
-      </label>
-    </div>
-    </div>
-
-    <div class="actions">
-      <%= form.submit %>
-    </div>
+    <fieldset class="actions flex">
+      <div>
+        <%= form.submit %>
+      </div>
+      <% if @attendee.id %>
+        <div>
+          <%= link_to 'Back', attendee_path(@attendee), class: "pseudo button" %>
+        </div>
+        <div class="off-fourth-800">
+          <%= link_to "Delete Attendee", attendee_path(@attendee), method: :delete, data: { confirm: "Are you sure you want to delete this attendee?" }, class: "pseudo button error" %>
+        </div>
+      <% end %>
+    </fieldset>
   </div>
 <% end %>

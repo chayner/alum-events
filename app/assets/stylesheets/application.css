@@ -23,18 +23,34 @@
  }
 
 main {
-  margin: 80px 50px;
   font-family: Open Sans;
   font-weight: 400;
+  margin: 80px 50px;
   max-width: 1200px;
+  padding-bottom: 20px;
 }
 
 nav {
+  background: #00205B;
+  color: #fff;
+}
 
+nav a {
+  color: #fff;
 }
 
 .notice {
   background: #4EB57C;
+}
+
+.error {
+  color: #FFF;
+  background: #C8102E;  
+}
+
+.pseudo.button.error {
+  color: #C8102E;
+  font-size: .8em;
 }
 
 .button, [type=submit] {
@@ -83,6 +99,10 @@ h2 {
   padding-top: 21px;
 }
 
+form .actions {
+  padding-top: 40px;
+}
+
 .classification {
   margin-top: 1em;
 }
@@ -115,10 +135,18 @@ h2 {
   text-align: center
 }
 
-#action-bar {
-  margin: 40px auto;
+.action-bar, .card-action-bar {
+  margin: 10px auto;
   text-align: center;
-  width: 400px;
+}
+
+.card-action-bar {
+  max-width: 400px;
+}
+
+#add-attendee-modal article.modal-content{
+  max-width: 400px;
+  padding: 1em;
 }
 
 #attendee-form {
@@ -126,7 +154,7 @@ h2 {
 }
 
 @media print {
-  nav, #back, #height-modal, #action-bar, .modal {
+  nav, #back, #height-modal, .action-bar, .modal, .card-action-bar {
     display: none;
   }
 

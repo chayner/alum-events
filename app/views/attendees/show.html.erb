@@ -12,10 +12,10 @@
   <h1 id="first_name"><%= @attendee.first_name.upcase %></h1>
   <h2 id="last_name"><%= @attendee.last_name.upcase %></h2>
   <div class="classification">
-    <% if @attendee.ug_program != "" %>
+    <% if @attendee.ug_program != "" && !@attendee.ug_program.nil? %>
       <h3 class="degree"><%= @attendee.ug_program %>, <%= @attendee.ug_graduation_year %></h3>
     <% end %>
-    <% if @attendee.gr_program != "" %>
+    <% if @attendee.gr_program != "" && !@attendee.gr_program.nil? %>
       <h3 class="degree"><%= @attendee.gr_degree %>, <%= @attendee.gr_program %>, <%= @attendee.gr_graduation_year %></h3>
     <% end %>
     <% if @attendee.category == "Staff" %>
@@ -26,30 +26,8 @@
   </div>
 </article>
 
-<div class="modal">
-  <input id="modal_1" type="checkbox" />
-  <label for="modal_1" class="overlay"></label>
-  <article>
-    <header>
-      <h3>Submit Height</h3>
-      <label for="modal_1" class="close">&times;</label>
-    </header>
-    <%= form_for @attendee, url: attendee_path(buid: @attendee.buid), method: :put do |form| %>
-    <section class="content">
-        <div class="form-group">
-          <%= hidden_field_tag :buid, @attendee.buid %>
-        </div>
-    </section>
-    <footer>
-      <%= form.submit "Save", class: "button btn-primary" %>
-    </footer>
-    <% end %>
-  </article>
-</div>
 
-
-
-  <div id="action-bar" class="flex">
+  <div class="flex card-action-bar">
     <div>
       <% if @attendee.checked_in? %>
         <div class="checkedin">
@@ -67,6 +45,6 @@
       <% end %>
     </div>
     <div>
-      <%= link_to "Edit Attendee", edit_attendee_path, class: "secondary" %>
+      <%= link_to "Edit Attendee", edit_attendee_path, class: "pseudo button" %>
     </div>
   </div>

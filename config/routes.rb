@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get 'print' => 'attendees#to_print'
   get 'get_print' => 'attendees#get_print_html'
 
+  post 'quick_create_attendee', to: 'attendees#quick_create', as: 'quick_create_attendee'
+  
   resources :attendees, except: :index do
     member do
       patch :checkin

@@ -2,7 +2,7 @@ class AttendeesController < ApplicationController
   before_action :set_attendee, only: [:show, :edit, :update, :checkin, :print, :destroy]
 
   def start
-
+    @new_attendee = Attendee.new
   end
 
   def results
@@ -59,7 +59,7 @@ class AttendeesController < ApplicationController
 
   def destroy
     @attendee.destroy
-    redirect_to attendees_url, notice: 'Attendee was successfully destroyed.'
+    redirect_to start_path, notice: 'Attendee was successfully removed.'
   end
 
   def checkin
@@ -86,6 +86,16 @@ class AttendeesController < ApplicationController
     render html: html_string
   end
 
+  def quick_create
+    @attendee = Attendee.new(quick_attendee_params)
+    if @attendee.save
+      redirect_to attendee_path(@attendee)
+    else
+      flash[:error] = @attendee.errors.full_messages.to_sentence
+      redirect_to start_path
+    end
+  end
+
   private
 
   def set_attendee
@@ -96,4 +106,7 @@ class AttendeesController < ApplicationController
     params.require(:attendee).permit(:first_name, :last_name, :email, :phone_number, :ug_graduation_year, :ug_college, :ug_program, :ug_degree, :gr_graduation_year, :gr_college, :gr_program, :gr_degree, :is_faculty, :is_staff, :company, :position, :checked_in, :printed)
   end
   
+  def quick_attendee_params
+    params.require(:attendee).permit(:first_name, :last_name, :ug_graduation_year)
+  end
 end
