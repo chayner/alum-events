@@ -1,0 +1,39 @@
+one:
+  buid: BU0042616
+  first_name: John
+  last_name: Doe
+  email: john.doe@example.com
+  phone_number: "1234567890"
+  ug_graduation_year: 2020
+  ug_college: College of Arts and Sciences
+  ug_program: Computer Science
+  ug_degree: BSc
+  gr_graduation_year: 2022
+  gr_college: Graduate School
+  gr_program: Software Engineering
+  gr_degree: MSc
+  category: Alumni
+  company: Tech Company
+  position: Developer
+  checked_in: <%= Time.now %>
+  printed: <%= Time.now %>
+
+two:
+  buid: BU0042239
+  first_name: Jane
+  last_name: Smith
+  email: jane.smith@example.com
+  phone_number: "0987654321"
+  ug_graduation_year: 2018
+  ug_college: School of Business
+  ug_program: Marketing
+  ug_degree: BBA
+  gr_graduation_year: 2020
+  gr_college: School of Business
+  gr_program: Business Administration
+  gr_degree: MBA
+  category: Alumni
+  company: Marketing Company
+  position: Manager
+  checked_in: <%= Time.now %>
+  printed: <%= Time.now %>

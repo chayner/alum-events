@@ -60,7 +60,7 @@ Rails.application.configure do
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque
-  # config.active_job.queue_name_prefix = "capngown_production"
+  # config.active_job.queue_name_prefix = "alumevents_production"
 
   config.action_mailer.perform_caching = false
 
@@ -98,7 +98,7 @@ Rails.application.configure do
     "infinite-meadow-09480.herokuapp.com",
     ENV["SERVER_HOST_NAME"],
     "belmontalum.chip.fyi",
-    "capngown.chip.fyi"
+    "alumevents.chip.fyi"
   ]
 
 end

@@ -66,4 +66,7 @@
         <%= button_to 'Mark as Printed', print_attendee_path(page: { print: true }), { method: :patch, form: { data: { turbo: true } }, :disabled => !@attendee.checked_in? } %>
       <% end %>
     </div>
+    <div>
+      <%= link_to "Edit Attendee", edit_attendee_path, class: "secondary" %>
+    </div>
   </div>

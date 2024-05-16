@@ -23,10 +23,15 @@
       <div class="menu"><a href="/print" class="restart">Print List</a>• <a href="/start" class="restart">Check-in</a></div>
     </nav>
     <main class="main">
-    <% flash.each do |name, msg| -%>
-      <%= content_tag :div, msg, class: name %>
-    <% end -%>
-    <%= yield %>
+      <div class="row">
+        <% flash.each do |name, msg| -%>
+          <div class="card">
+            <%= content_tag :p, msg, class: name %>
+            <a class="close">x</a>
+          </div> 
+        <% end -%>
+      </div>
+      <%= yield %>
     </main>
   </body>
 </html>

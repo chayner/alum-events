@@ -3,14 +3,17 @@
     <%= form.label :buid, "BUID:" %>
     <%= form.text_field :buid %>
   </div> -->
-  <div class="flex two">
-    <div>
+  <div class="flex three">
+    <div class="half">
       <%= form.label :last_name, "Last Name:" %>
       <%= form.text_field :last_name, value: last_name %>
     </div>
-    <div class="form-submit">
+    <div class="form-submit fourth">
       <%= form.hidden_field "form_submitted", value: "true" %>
       <%= form.submit "Search" %>
+    </div>
+    <div id="new-attendee-box" class="fourth">
+      <%= link_to "New Attendee", new_attendee_path, class: "button secondary" %>
     </div>
     <footer class="full">
       <label id="inc-checkbox">

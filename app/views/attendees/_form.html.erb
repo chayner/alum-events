@@ -1,5 +1,5 @@
 <%= form_with(model: attendee, local: true) do |form| %>
-  <% if attendee.errors.any? %>
+  <% if attendee&.errors&.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(attendee.errors.count, "error") %> prohibited this attendee from being saved:</h2>
 
@@ -11,82 +11,147 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name %>
-  </div>
+  <div id="attendee-form">
+    <h3>Contact Info</h3>
+    <div class="flex">
+      <div class="field half">
+        <%= form.text_field :first_name, placeholder: "First Name" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name %>
-  </div>
+      <div class="field half">
+        <%= form.text_field :last_name, placeholder: "Last Name" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.email_field :email %>
-  </div>
+      <div class="field full half-800">
+        <%= form.email_field :email, placeholder: "Email" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :phone_number %>
-    <%= form.telephone_field :phone_number %>
-  </div>
+      <div class="field full half-800">
+        <%= form.telephone_field :phone_number, placeholder: "Phone" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :ug_graduation_year %>
-    <%= form.number_field :ug_graduation_year %>
-  </div>
+    </div>
+    
+    <h3>Undergraduate</h3>
+    
+    <div class="flex">
+      <div class="field half">
+        <%= form.label :ug_graduation_year, "Grad Year" %>
+        <%= form.number_field :ug_graduation_year, min: 1950, max: Date.today.year + 5 %>
+      </div>
+      <div class="field half">
+        <%= form.label :ug_degree, "Degree" %>
+        <%= form.text_field :ug_degree %>
+      </div>
+      
 
-  <div class="field">
-    <%= form.label :ug_college %>
-    <%= form.text_field :ug_college %>
-  </div>
+      <div class="field">
+        <%= form.label :ug_college, "College" %>
+        <%= form.select :ug_college, options_for_select([
+          ['Please Select', ''],
+          ['College of Business', 'CB'],
+          ['College of Entertainment & Music Business', 'CE'],
+          ['College of Health Sciences', 'CH'],
+          ['College-Interdisciplinary Stdy', 'CI'],
+          ['College of Law', 'CL'],
+          ['College of Sciences & Math', 'CM'],
+          ['College of Pharmacy', 'CP'],
+          ['College of Lib. Arts & Soc Sci', 'CS'],
+          ['College of Theology & Ministry', 'CT'],
+          ['College of Education', 'ED'],
+          ['College of Music & Performing Arts', 'MP'],
+          ['College Architecture & Design', 'OM'],
+          ['College of Pharmacy & Health Sciences', 'PH'],
+          ['University College', 'UC'],
+          ['Watkins College', 'WA'],
+          ['College of Art', 'WC'],
+          ['College of Nursing', 'CN']
+        ], selected: attendee.ug_college) %>
+      </div>
+      <div class="field">
+        <%= form.label :ug_program, "Program" %>
+        <%= form.text_field :ug_program %>
+      </div>
+    </div>
+    
+    
+  <h3>Graduate</h3>
+    
+    <div class="flex">
+      <div class="field half">
+        <%= form.label :gr_graduation_year, "Grad Year" %>
+        <%= form.number_field :gr_graduation_year, min: 1950, max: Date.today.year + 5 %>
+      </div>
 
-  <div class="field">
-    <%= form.label :ug_program %>
-    <%= form.text_field :ug_program %>
-  </div>
+      <div class="field half">
+        <%= form.label :gr_degree, "Degree" %>
+        <%= form.text_field :gr_degree %>
+      </div>
 
-  <div class="field">
-    <%= form.label :ug_degree %>
-    <%= form.text_field :ug_degree %>
-  </div>
+      <div class="field">
+        <%= form.label :gr_college, "College" %>
+        <%= form.select :gr_college, options_for_select([
+          ['Please Select', ''],
+          ['College of Business', 'CB'],
+          ['College of Entertainment & Music Business', 'CE'],
+          ['College of Health Sciences', 'CH'],
+          ['College-Interdisciplinary Stdy', 'CI'],
+          ['College of Law', 'CL'],
+          ['College of Sciences & Math', 'CM'],
+          ['College of Pharmacy', 'CP'],
+          ['College of Lib. Arts & Soc Sci', 'CS'],
+          ['College of Theology & Ministry', 'CT'],
+          ['College of Education', 'ED'],
+          ['College of Music & Performing Arts', 'MP'],
+          ['College Architecture & Design', 'OM'],
+          ['College of Pharmacy & Health Sciences', 'PH'],
+          ['University College', 'UC'],
+          ['Watkins College', 'WA'],
+          ['College of Art', 'WC'],
+          ['College of Nursing', 'CN']
+        ], selected: attendee.gr_college) %>
+      </div>
 
-  <div class="field">
-    <%= form.label :gr_graduation_year %>
-    <%= form.number_field :gr_graduation_year %>
-  </div>
+      <div class="field">
+        <%= form.label :gr_program, "Program" %>
+        <%= form.text_field :gr_program %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :gr_college %>
-    <%= form.text_field :gr_college %>
-  </div>
+    <h3>Work</h3>
 
-  <div class="field">
-    <%= form.label :gr_program %>
-    <%= form.text_field :gr_program %>
-  </div>
+    <div class="field">
+      <%= form.label :company %>
+      <%= form.text_field :company %>
+    </div>
 
-  <div class="field">
-    <%= form.label :gr_degree %>
-    <%= form.text_field :gr_degree %>
-  </div>
+    <div class="field">
+      <%= form.label :position %>
+      <%= form.text_field :position %>
+    </div>
 
-  <div class="field">
-    <%= form.label :category %>
-    <%= form.text_field :category %>
-  </div>
+    <div class="flex">
+    <div class="field half">
+      <label>
+        <%= form.check_box :is_faculty  %>
+        <span class="checkable">
+          <%= form.label :is_faculty, "Belmont Faculty" %>
+        </span>
+      </label>
+    </div>
 
-  <div class="field">
-    <%= form.label :company %>
-    <%= form.text_field :company %>
-  </div>
+    <div class="field half">
+      <label>
+        <%= form.check_box :is_staff  %>
+        <span class="checkable">
+          <%= form.label :is_staff, "Belmont Staff" %>
+        </span>
+      </label>
+    </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :position %>
-    <%= form.text_field :position %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+    <div class="actions">
+      <%= form.submit %>
+    </div>
   </div>
 <% end %>

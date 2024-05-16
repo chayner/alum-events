@@ -93,7 +93,7 @@ class AttendeesController < ApplicationController
   end
 
   def attendee_params
-    params.require(:attendee).permit(:first_name, :last_name, :email, :phone_number, :ug_graduation_year, :ug_college, :ug_program, :ug_degree, :gr_graduation_year, :gr_college, :gr_program, :gr_degree, :category, :company, :position, :checked_in, :printed)
+    params.require(:attendee).permit(:first_name, :last_name, :email, :phone_number, :ug_graduation_year, :ug_college, :ug_program, :ug_degree, :gr_graduation_year, :gr_college, :gr_program, :gr_degree, :is_faculty, :is_staff, :company, :position, :checked_in, :printed)
   end
-
+  
 end

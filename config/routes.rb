@@ -2,30 +2,25 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  # root "articles#index"
   root to: redirect('/start')
   
   get 'welcome' => 'pages#home'
 
-  get 'start' => 'graduates#start'
-  get 'list' => 'graduates#list'
+  get 'start' => 'attendees#start'
+  get 'list' => 'attendees#list'
 
-  get 'print' => 'graduates#to_print'
-  get 'get_print' => 'graduates#get_print_html'
+  get 'print' => 'attendees#to_print'
+  get 'get_print' => 'attendees#get_print_html'
 
-  resources :graduates, param: :buid do
+  resources :attendees, except: :index do
     member do
-      get :show
-      post :update
-
       patch :checkin
       get :checkin
-
       patch :print
       get :print
-
     end
   end
 
-  # get 'graduates/confirm' => 'graduates#confirm', as: :grad_confirm
+  get '/attendees', to: redirect('/start')
+  # get 'attendees/confirm' => 'attendees#confirm', as: :grad_confirm
 end

@@ -14,13 +14,13 @@
       <td><%= link_to("#{attendee.last_name}", attendee_path(id: attendee.id, last_name: params.fetch(:last_name, nil))) %></td>
       <td><%= link_to("#{attendee.first_name}", attendee_path(id: attendee.id, last_name: params.fetch(:last_name, nil))) %></td>
       <td>
-        <% if attendee.category == "Alumni" %>
+        <% if attendee.category == "alumni" %>
           <span class="material-symbols-outlined">school</span>
-        <% elsif attendee.category == "Staff" %>
+        <% elsif attendee.category == "staff" %>
           <span class="material-symbols-outlined">badge</span>
-        <% elsif attendee.category == "Faculty" %>
+        <% elsif attendee.category == "faculty" %>
           <span class="material-symbols-outlined">history_edu</span>
-        <% elsif attendee.category == "Guest" %>
+        <% elsif attendee.category == "guest" %>
           <span class="material-symbols-outlined">group</span>
         <% end %>
       </td>

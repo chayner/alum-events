@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_16_015014) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_16_044546) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,6 +33,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_16_015014) do
     t.string "position"
     t.datetime "checked_in", precision: nil
     t.datetime "printed", precision: nil
+    t.boolean "is_faculty", default: false
+    t.boolean "is_staff", default: false
   end
 
   create_table "brags", force: :cascade do |t|

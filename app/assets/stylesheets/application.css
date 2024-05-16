@@ -26,10 +26,23 @@ main {
   margin: 80px 50px;
   font-family: Open Sans;
   font-weight: 400;
+  max-width: 1200px;
 }
 
 nav {
 
+}
+
+.notice {
+  background: #4EB57C;
+}
+
+.button, [type=submit] {
+  background: #00205B
+}
+
+.button.secondary {
+  background: #69B3E7;
 }
 
 article#badge {
@@ -55,6 +68,10 @@ h1#first_name {
 
 h2 {
   padding: 0;
+}
+
+#new-attendee-box {
+  padding-top: 21px;
 }
 
 #inc-checkbox {
@@ -104,6 +121,9 @@ h2 {
   width: 400px;
 }
 
+#attendee-form {
+  max-width: 600px;
+}
 
 @media print {
   nav, #back, #height-modal, #action-bar, .modal {
