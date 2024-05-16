@@ -1,0 +1,44 @@
+<%= form_with url: print_path, local: true, method: :get do |form| %>
+  <div>
+    <label>
+      <input type="checkbox" name="printed" value="show" id="show-printed" <%= params[:printed] == 'show' ? "checked" : "" %>>
+      <span class="checkable">Include Printed</span>
+    </label>
+  </div>
+  <%= form.hidden_field "form_submitted", value: "true" %>
+<% end %>
+
+<div  id="to-print">
+  <%= render partial: 'print_list', locals: { graduates: @graduates } %>
+</div>
+
+<script>
+  // Poll the server for updated data every 5 seconds
+  const POLL_INTERVAL_MS = 5000;
+  let lastUpdatedAt = null;
+
+  setInterval(() => {
+    // Only poll the server if there's new data to fetch
+    let show_print = document.getElementById('show-printed').checked == true ? 'show' : 'hide'
+    // if (lastUpdatedAt) {
+      fetch(`/get_print?updated_since=${lastUpdatedAt}&printed=`+show_print)
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById('to-print').innerHTML = html;
+        })
+        .catch(error => console.error(error));
+    <%# } %>
+  }, POLL_INTERVAL_MS);
+
+
+  document.getElementById('show-printed').addEventListener('click', function() {
+    let show_print = document.getElementById('show-printed').checked == true ? 'show' : 'hide'
+    fetch(`/get_print?updated_since=${lastUpdatedAt}&printed=`+show_print)
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById('to-print').innerHTML = html;
+      })
+      .catch(error => console.error(error));
+  });
+
+</script>
